@@ -16,7 +16,7 @@ export class PlacesService {
   loadAvailablePlaces() {
     return this.fetchPlaces(
       "http://localhost:3000/places",
-      "Fail to fetch your favorite places"
+      "Fail to fetch available places"
       )
   }
 
@@ -27,7 +27,11 @@ export class PlacesService {
     )
   }
 
-  addPlaceToUserPlaces(place: Place) {}
+  addPlaceToUserPlaces(placeId: string) {
+    return this.httpClient.put("http://localhost:3000/user-places", {
+      placeId: placeId
+    })
+  }
 
   removeUserPlace(place: Place) {}
 

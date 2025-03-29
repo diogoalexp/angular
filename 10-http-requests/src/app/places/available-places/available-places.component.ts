@@ -21,7 +21,7 @@ export class AvailablePlacesComponent implements OnInit {
 
   ngOnInit(): void {
     this.isFetching.set(true);
-    const subscription = this.placesService.loadUserPlaces()
+    const subscription = this.placesService.loadAvailablePlaces()
     .subscribe({
       next: (data) =>{
         console.log(data)
@@ -41,11 +41,13 @@ export class AvailablePlacesComponent implements OnInit {
   }
 
   onSelectPlace(selectedPlace: Place){
-    this.httpClient.put("http://localhost:3000/user-places", {
-      placeId: selectedPlace.id
-    })
+    const subscription = this.placesService.addPlaceToUserPlaces(selectedPlace.id)
     .subscribe({
       next: (resData) => console.log(resData)
     });
+
+    this.destroyRef.onDestroy(() =>{
+      subscription.unsubscribe();
+    })
   }
 }
