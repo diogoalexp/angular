@@ -16,7 +16,7 @@ export class UserTasksComponent implements OnInit{
   private activatedRoute = inject(ActivatedRoute); //old way to retrive route params
   private destroyRef = inject(DestroyRef);
   ngOnInit(): void {
-      console.log(this.activatedRoute);
+      console.log(this.activatedRoute.snapshot); //snapshot gives actual values rather that observables
       const subscription = this.activatedRoute.paramMap.subscribe({
         next: paramMap => console.log(this.usersService.users.find(u => u.id === paramMap.get('userId'))?.name)
       });
