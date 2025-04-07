@@ -11,17 +11,20 @@ import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class UserTasksComponent implements OnInit{
   userId = input.required<string>();
+  message = input.required<string>();
   private usersService = inject(UsersService);
 
   private activatedRoute = inject(ActivatedRoute); //old way to retrive route params
   private destroyRef = inject(DestroyRef);
   ngOnInit(): void {
-      console.log(this.activatedRoute.snapshot); //snapshot gives actual values rather that observables
-      const subscription = this.activatedRoute.paramMap.subscribe({
-        next: paramMap => console.log(this.usersService.users.find(u => u.id === paramMap.get('userId'))?.name)
-      });
+    console.log('Input data: ', this.message())
 
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
+    console.log(this.activatedRoute.snapshot); //snapshot gives actual values rather that observables
+    const subscription = this.activatedRoute.paramMap.subscribe({
+      next: paramMap => console.log(this.usersService.users.find(u => u.id === paramMap.get('userId'))?.name)
+    });
+
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   }
 
   userName = computed(() => this.usersService.users.find(u => u.id === this.userId())?.name)
