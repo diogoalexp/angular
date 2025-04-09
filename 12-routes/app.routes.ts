@@ -8,7 +8,7 @@ import { inject } from "@angular/core";
 const dummyCanMatch: CanMatchFn = (route, segments) => {
     const router = inject(Router);
     const shouldGetAcess = Math.random();
-    if(shouldGetAcess < 0.5){
+    if(shouldGetAcess < 0.9){
         return true;
     }
 
