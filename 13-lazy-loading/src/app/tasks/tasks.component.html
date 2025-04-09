@@ -4,6 +4,8 @@
   </a>
 </p>
 
+<!-- Lazy loading components -->
+@defer(on timer(3000)){
 <ul>
   @for (task of userTasks(); track task.id) {
     <li>
@@ -13,3 +15,6 @@
     <p>There are no tasks yet. Start adding some!</p>
   }
 </ul>
+} @placeholder{
+  <p>There are no tasks yet. Start adding some!</p>
+}
