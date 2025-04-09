@@ -27,6 +27,8 @@ export class UserTasksComponent implements OnInit {
   userId = input.required<string>();
   message = input.required<string>();
   userName = input.required<string>();
+
+  private activatedRoute = inject(ActivatedRoute);
   // private usersService = inject(UsersService);
 
   // private activatedRoute = inject(ActivatedRoute); //old way to retrive route params
@@ -44,6 +46,11 @@ export class UserTasksComponent implements OnInit {
     // });
 
     // this.destroyRef.onDestroy(() => subscription.unsubscribe());
+
+    //accessing route data - alternative way
+    // this.activatedRoute.data.subscribe({
+    //   next: data => console.log("data", data)
+    // });
   }
 
   // userName = computed(
