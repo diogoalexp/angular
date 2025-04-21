@@ -5,16 +5,21 @@ export const increment = createAction(
     props<{value: number}>()
 )
 
+export const decrement = createAction(
+    '[Counter] Decrement',
+    props<{value: number}>()
+)
+
+
 //alternative way
+// export const INCREMENT = '[Counter] Increment';
 
-export const INCREMENT = '[Counter] Increment';
+// export class IncrementAction implements Action {
+//     readonly type = INCREMENT;
 
-export class IncrementAction implements Action {
-    readonly type = INCREMENT;
+//     constructor(public value: number){
 
-    constructor(public value: number){
+//     }
+// }
 
-    }
-}
-
-export type CounterActions = IncrementAction;
+// export type CounterActions = IncrementAction;
